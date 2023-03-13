@@ -32,6 +32,8 @@ namespace Pedidos
 
             var cliente = db.Clientes.Find(2);
             db.Clientes.Remove(cliente);
+
+            db.SaveChanges();
         }
 
         private static void AtualizarDados()
