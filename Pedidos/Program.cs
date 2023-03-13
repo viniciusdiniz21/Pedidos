@@ -17,9 +17,37 @@ namespace Pedidos
             // codigo
             //}
 
+            //InserirDados();
+            //InserirDadosEmMassa();
             //ConsultarDados();
             //CadastrarPedido();
-            ConsultarPedidoCarregamentoAdiantado();
+            //ConsultarPedidoCarregamentoAdiantado();
+            //AtualizarDados();
+            //RemoverRegistro()
+        }
+
+        private static void RemoverRegistro()
+        {
+            using var db = new Data.ApplicationContext();
+
+            var cliente = db.Clientes.Find(2);
+            db.Clientes.Remove(cliente);
+        }
+
+        private static void AtualizarDados()
+        {
+            using var db = new Data.ApplicationContext();
+            var cliente = db.Clientes.FirstOrDefault(p => p.Id == 2);
+
+            var clienteDesconectado = new Cliente
+            {
+                Nome = "Nome Teste",
+                Telefone = "32545345"
+            };
+
+            db.Entry(cliente).CurrentValues.SetValues(clienteDesconectado);
+
+            db.SaveChanges();
         }
         private static void ConsultarPedidoCarregamentoAdiantado()
         {
